@@ -24,3 +24,7 @@
 - start working on the component and view it on your browser
 
 ### Happy deving😁
+
+**Ohh, and before I forget, Ignore the antd warnings, it is an open issue and far from a fix, so everything will still work OK, if you want you can ignore the warnings on webpack**
+
+the open issue 👉(https://github.com/ant-design/ant-design/issues/33327)
