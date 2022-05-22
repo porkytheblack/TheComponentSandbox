@@ -18,13 +18,13 @@ function TopBar() {
           height: "48px"
         }} >
           <Grid item sx={{
-            width: 200,
+            width: 300,
             alignItems: "center",
             justifyContent: "center"
           }}   >
             <Button   variant="text" >
               <Typography variant="h5" align="center" fontFamily={"Koulen"} >
-                The Sandbox
+                Component Sanbox 🚀🚀
               </Typography>
             </Button>
           </Grid>

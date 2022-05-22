@@ -12,5 +12,14 @@ module.exports = {
                 ]
             }
         ]
+    },
+    resolve: {
+        fallback: {
+            "path": false,
+            "assert": false,
+            "util": false,
+            "stream": false,
+            "constants": false
+        }
     }
 }
