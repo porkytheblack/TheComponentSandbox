@@ -4,6 +4,7 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { ReactComponentElement, ReactElement, ReactNode } from "react";
 import {Container} from "@mui/material"
 import Text1 from "../../Components/Texts/Text1";
+import SpotifyButton1 from "../../Components/Buttons/SpotifyButton1";
 
 export class RouteDef {
         public title: string = "";
@@ -17,6 +18,7 @@ export class RouteDef {
         this.route = route;
         this.Icon = icon;
         this.component =typeof component != "undefined" ? component : undefined
+        console.log(this.component)
     }
 }
 
@@ -27,12 +29,13 @@ export class SubmenuRoute extends RouteDef {
     }
     public add_route(title: string, route: string, component?: ()=> ReactElement<any, any>){
         this.SubRoutes.push(new RouteDef(title, route, this.Icon, component))
-    }
+    }      
 }
 
 var Text: SubmenuRoute = new SubmenuRoute("Text", "text", TextFields)
 Text.add_route("Text1", "Text1", Text1)
 var Buttons: SubmenuRoute = new SubmenuRoute("Buttons", "buttons", RadioButtonChecked)
+Buttons.add_route("SpotifyButton1", "SpotifyButton1", SpotifyButton1)
 var Containers: SubmenuRoute = new SubmenuRoute("Containers", "containers", ListAlt)
 var Inputs: SubmenuRoute = new SubmenuRoute("Inputs", "inputs", Input)
 
