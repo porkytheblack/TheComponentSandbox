@@ -10,11 +10,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { ArrowForward } from '@mui/icons-material'
 import {css} from "@emotion/react"
 import { useAppSelector } from '../redux/hooks'
-import { get_schema } from '../data/get_data'
 
 function Router() {
   const selected = useAppSelector((state)=>state.sandbox.bgColor)
-  get_schema()
   return (
     <BrowserRouter>
     <Grid container height={"100vh"} overflow="hidden" bgcolor="#0F172A"  >
