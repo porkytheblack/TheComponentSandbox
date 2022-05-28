@@ -1,70 +1,24 @@
-import { Box, Button, Container, Divider, Grid, IconButton, Stack, TextField, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import Sandbox from '../SandBox'
-import SideMenu from './SideMenu'
-import { SubMenuRoutes } from './SideMenu/routes'
-import TopBar from './TopBar'
-import {Routes, Route} from "react-router"
+import {  Box, Container, Grid, Stack  } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
-import { ArrowForward } from '@mui/icons-material'
-import {css} from "@emotion/react"
-import { useAppSelector } from '../redux/hooks'
+import styled from 'styled-components'
+import SideMenu from './SideMenu'
+import TopBar from './TopBar'
+
 
 function Router() {
-  const selected = useAppSelector((state)=>state.sandbox.bgColor)
   
   return (
-    <BrowserRouter>
-    <Grid container height={"100vh"} overflow="hidden" bgcolor="#0F172A"  >
-      
+    <Box flexDirection={"column"} height="100vh" width="100wh" alignItems="center" justifyContent={"flex-start"} >
       <TopBar/>
-      <Grid  height={"100%"} item xs={2}  >
-        <SideMenu/>
-      </Grid>
-      <Grid direction="column" padding={"20px"} classes={css`
-        overflow-y: scroll;
-        ::-webkit-scrollbar{
-          background: transparent;
-          width: 5px;
-        }
-        ::-webkit-scrollbar-thumb{
-          background: blue;
-        }
-      `} alignItems="center" justifyContent="flex-start" height="100%" item xs={10}>
-        
-        
-          <Routes>
-            <Route path="" element={<Sandbox/>} >
-                {
-                  SubMenuRoutes.map(
-                    (main_route)=>(
-                    main_route.SubRoutes.length == 0 ? (
-                      <Route path={main_route.route} element={<Container  sx={{
-                        width: "100%",
-                        height: "100%"
-                      }} >
-                          <Typography variant="h4"  >
-                              No {main_route.title} Component has been created
-                          </Typography>
-                      </Container>} />
-                      ) : (main_route.SubRoutes.map((sub_route)=>(
-                        <Route path={`/${main_route.route}/${sub_route.route}`} element={typeof sub_route.component != "undefined" ? <sub_route.component/> : <Container >
-                          <Typography variant="h4"  >
-                              No {sub_route.title} Component has been defined or linked
-                          </Typography>
-                        </Container> } />
-                      )))
-                    )
-                  
-                  )
-                }
-            </Route>
-          </Routes>  
-          
-      </Grid>
-    </Grid>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Box flexDirection="row" className="flex flex-row!" alignItems={"flex-start"} justifyContent="flex-start" >
+          <SideMenu/>
+          <Box sx={{
+            width: "80%",
+          }} className="flex flex-col! bg-yellow-50 items-center justify-start h-full " ></Box>
+        </Box>
+      </BrowserRouter>
+    </Box>
   )
 }
 
