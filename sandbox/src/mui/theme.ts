@@ -1,4 +1,4 @@
-import { createMuiTheme, createTheme } from "@mui/material";
+import { createTheme } from "@mui/material";
 
 //create material ui dark theme
 export const theme = createTheme({
