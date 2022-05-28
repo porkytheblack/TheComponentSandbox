@@ -1,4 +1,4 @@
-import { Box, Button, Container, Divider, Grid, IconButton, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, Divider, Grid, IconButton, Stack, TextField, Typography, CircularProgress } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Sandbox from '../SandBox'
@@ -10,9 +10,44 @@ import { BrowserRouter } from 'react-router-dom'
 import { ArrowForward } from '@mui/icons-material'
 import {css} from "@emotion/react"
 import { useAppSelector } from '../redux/hooks'
+import {get_schema, SubmenuRoute} from "../data/get_data"
+import {useQuery} from "react-query"
+
+
 
 function Router() {
+
+  const categories_query = useQuery("fetch-categories", get_schema)
+
+
   const selected = useAppSelector((state)=>state.sandbox.bgColor)
+  get_schema().then((data)=>{
+    console.log(data)
+  }).catch((e)=>{
+    console.log(e)
+  })
+
+  if(categories_query.isLoading) return (
+    <Grid container alignItems="center" direction="column" justifyContent="center" height={"100vh"} overflow="hidden" bgcolor="#0F172A"  >
+        <Typography color="secondary" variant="h4" >
+          The Component Sandbox 
+        </Typography>
+        <CircularProgress color="secondary" sx={{
+          height: "100px",  
+          width: "100px"
+        }} />
+    </Grid>
+  )
+
+  if(categories_query.isError) return (
+    <Grid container height={"100vh"} alignItems="center" justifyContent="center" overflow="hidden" bgcolor="#0F172A"  >
+        <Typography variant='h6'color="primary" >
+          An Error Occured while fetching the data
+        </Typography>
+    </Grid>
+  )
+
+
   return (
     <BrowserRouter>
     <Grid container height={"100vh"} overflow="hidden" bgcolor="#0F172A"  >
@@ -36,8 +71,8 @@ function Router() {
           <Routes>
             <Route path="" element={<Sandbox/>} >
                 {
-                  SubMenuRoutes.map(
-                    (main_route)=>(
+                  categories_query.data.data.categories.map(
+                    (main_route: SubmenuRoute)=>(
                     main_route.SubRoutes.length == 0 ? (
                       <Route path={main_route.route} element={<Container  sx={{
                         width: "100%",

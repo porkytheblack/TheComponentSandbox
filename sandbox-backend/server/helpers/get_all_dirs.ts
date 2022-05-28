@@ -1,7 +1,7 @@
 import  path  from 'path';
 import fs from "fs-extra"
 
-const base_path = path.resolve(`../sandbox/src/components`)
+const base_path = path.resolve(`../sandbox/src/Components`)
 
 interface stateObject {
     components: Components[]
@@ -66,6 +66,7 @@ export const get_all_dirs = async (): Promise<stateObject> =>{
             var sub_dirs_and_files = fs.readdirSync(component.entry_file)
             sub_dirs_and_files.forEach((f)=>{
                 var pth= path.resolve(`${component.entry_file}/${f}`)
+		if(f != "index.ts"){
                 if(fs.existsSync(pth) && fs.lstatSync(pth).isFile()){
                     if(f != "config.json"){
                         st.state.components[st.state.components.indexOf(component)].add_component(f, pth)
@@ -78,6 +79,7 @@ export const get_all_dirs = async (): Promise<stateObject> =>{
                     var data = fs.readFileSync(component.SubComponents[component.SubComponents.length-1].entry_file)
                     component.SubComponents[component.SubComponents.length-1].set_data(data)
                 }
+		}
             })        
         })
 

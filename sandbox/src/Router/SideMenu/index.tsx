@@ -6,16 +6,19 @@ import React from 'react'
 import styled from 'styled-components'
 import {  RouteDef, SubmenuRoute, SubMenuRoutes } from './routes'
 import { useNavigate } from 'react-router'
+import { useQuery } from 'react-query'
+import { get_schema } from '../../data/get_data'
 
 function SideMenu() {
-
+    const categories_query = useQuery("fetch-categories", get_schema)
     const navigate = useNavigate()
+
     
 
   return (
     <CustomMenu mode="inline" title='Components' theme="dark"  >
             {
-                SubMenuRoutes.map((route: SubmenuRoute, index: number)=>(
+                categories_query.data?.data.categories.map((route: SubmenuRoute, index: number)=>(
                     <Menu.SubMenu onTitleClick={()=>{
                         navigate(route.route)
                     }} key={route.title} icon={

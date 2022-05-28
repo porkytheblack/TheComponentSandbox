@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import "@fontsource/montserrat"
 import React from 'react'
 //1ed760
-function SpotifyButton1() {
+export function SpotifyButton1() {
   return (
     <CustomButton disableFocusRipple={true}  >
         Premium
@@ -11,7 +11,7 @@ function SpotifyButton1() {
   )      
 }
 
-export default SpotifyButton1
+
 
 const CustomButton = styled(Button)`
     color: white;

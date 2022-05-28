@@ -3,8 +3,8 @@ import { ContainerTypeMap, SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { ReactComponentElement, ReactElement, ReactNode } from "react";
 import {Container} from "@mui/material"
-import Text1 from "../../Components/Texts/Text1";
-import SpotifyButton1 from "../../Components/Buttons/SpotifyButton1";
+import * as Texts from "../../Components/Texts"
+import * as MButtons from "../../Components/Buttons"
 
 export class RouteDef {
         public title: string = "";
@@ -33,9 +33,9 @@ export class SubmenuRoute extends RouteDef {
 }
 
 var Text: SubmenuRoute = new SubmenuRoute("Text", "text", TextFields)
-Text.add_route("Text1", "Text1", Text1)
+Text.add_route("Text1", "Text1", Texts.Text1)
 var Buttons: SubmenuRoute = new SubmenuRoute("Buttons", "buttons", RadioButtonChecked)
-Buttons.add_route("SpotifyButton1", "SpotifyButton1", SpotifyButton1)
+Buttons.add_route("SpotifyButton1", "SpotifyButton1", MButtons.SpotifyButton1)
 var Containers: SubmenuRoute = new SubmenuRoute("Containers", "containers", ListAlt)
 var Inputs: SubmenuRoute = new SubmenuRoute("Inputs", "inputs", Input)
 
